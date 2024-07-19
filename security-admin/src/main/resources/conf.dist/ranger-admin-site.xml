@@ -315,7 +315,7 @@
 	<!-- Service user for KMS -->
     <property>
     	<name>ranger.kms.service.user.hdfs</name>
-        <value>hdfs</value>
+        <value>hadoop</value>
     </property>
     <property>
         <name>ranger.kms.service.user.hive</name>
