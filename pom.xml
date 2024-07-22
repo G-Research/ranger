@@ -1113,6 +1113,12 @@
                 <version>${zookeeper.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper-jute</artifactId>
+                <version>${zookeeper.version}</version>
+            </dependency>
+
 <!--            Add the dependencies here to enforce the version.-->
             <dependency>
                 <groupId>org.apache.curator</groupId>
@@ -1140,6 +1146,12 @@
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-json</artifactId>
             <version>${jersey-bundle.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.zookeeper</groupId>
+            <artifactId>zookeeper-jute</artifactId>
+            <version>${zookeeper.version}</version>
         </dependency>
     </dependencies>
 
