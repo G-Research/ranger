@@ -117,7 +117,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider</name>
-    <value>random</value>
+    <value>zookeeper</value>
     <description>
       Indicates how the secret to sign the authentication cookies will be
       stored. Options are 'random' (default), 'string' and 'zookeeper'.
@@ -138,7 +138,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.connection.string</name>
-    <value>#HOSTNAME#:#PORT#,...</value>
+    <value>ranger-zk:2181</value>
     <description>
       The Zookeeper connection string, a list of hostnames and port comma
       separated.
@@ -147,7 +147,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.auth.type</name>
-    <value>kerberos</value>
+    <value>none</value>
     <description>
       The Zookeeper authentication type, 'none' or 'sasl' (Kerberos).
     </description>
