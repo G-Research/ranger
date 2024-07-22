@@ -36,7 +36,7 @@ services:
 #      context: .
 #      dockerfile: Dockerfile.ranger-zk
 #    It used version 3.5.9.
-    image: 'zookeeper:3.6.4'
+    image: 'zookeeper:3.6.3'
     container_name: ranger-zk
     hostname: ranger-zk.example.com
     networks:
