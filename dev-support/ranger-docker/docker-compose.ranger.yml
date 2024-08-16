@@ -30,10 +30,16 @@ services:
       - RANGER_DB_TYPE
       - DEBUG_ADMIN=${DEBUG_ADMIN:-false}
     volumes:
-      - ./kerberos-files/krb5.conf:/etc/krb5.conf
-      - ./kerberos-files/keytabs:/etc/security/keytabs
-    command:
-      - /home/ranger/scripts/ranger.sh
+      - ./kerberos-files/krb5.conf:/etc/krb5.conf:rw
+      - ./kerberos-files/keytabs:/etc/security/keytabs:rw
+#    Run the container as root to allow the ownership change.
+    user: root
+    entrypoint: >
+      sh -c "
+      chown -R root:root /etc/security/keytabs &&
+      /home/ranger/scripts/ranger.sh"
+#    command:
+#      - /home/ranger/scripts/ranger.sh
 
   ranger-zk:
     build:

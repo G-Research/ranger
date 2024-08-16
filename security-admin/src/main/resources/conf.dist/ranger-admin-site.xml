@@ -320,11 +320,18 @@
 	</property>
 	<property>
 		<name>policy.download.auth.users</name>
-		<value>hadoop,hive,spark,trino</value>
+		<value>hadoop,testuser,hive,spark,trino</value>
 	</property>
 	<property>
 		<name>hadoop.security.auth_to_local</name>
-		<value>DEFAULT</value>
+<!--		This strips the '@EXAMPLE.COM' (and the service where applicable) from all principals.-->
+<!--		e.g.-->
+<!--		1. The user for 'hadoop/namenode@EXAMPLE.COM' will be 'hadoop'.-->
+<!--		2. The user for 'testuser@EXAMPLE.COM' will be 'testuser'.-->
+		<value>
+			RULE:[1:$1@$0](.*@EXAMPLE.COM)s/@.*//
+			DEFAULT
+		</value>
 	</property>
 
 	<!-- Service user for KMS -->
