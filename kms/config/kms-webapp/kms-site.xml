@@ -90,7 +90,8 @@
 
   <property>
     <name>hadoop.kms.authentication.kerberos.keytab</name>
-    <value>${user.home}/kms.keytab</value>
+<!--    <value>${user.home}/kms.keytab</value>-->
+    <value>/etc/security/keytabs/kms.keytab</value>
     <description>
       Path to the keytab with credentials for the configured Kerberos principal.
     </description>
@@ -98,7 +99,7 @@
 
   <property>
     <name>hadoop.kms.authentication.kerberos.principal</name>
-    <value>HTTP/localhost</value>
+    <value>HTTP/ranger@EXAMPLE.COM</value>
     <description>
       The Kerberos principal to use for the HTTP endpoint.
       The principal must start with 'HTTP/' as per the Kerberos HTTP SPNEGO specification.
@@ -107,7 +108,10 @@
 
   <property>
     <name>hadoop.kms.authentication.kerberos.name.rules</name>
-    <value>DEFAULT</value>
+    <value>
+      RULE:[1:$1@$0](.*@EXAMPLE.COM)s/@.*//
+      DEFAULT
+    </value>
     <description>
       Rules used to resolve Kerberos principal names.
     </description>
@@ -117,7 +121,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider</name>
-    <value>random</value>
+    <value>zookeeper</value>
     <description>
       Indicates how the secret to sign the authentication cookies will be
       stored. Options are 'random' (default), 'string' and 'zookeeper'.
@@ -138,7 +142,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.connection.string</name>
-    <value>#HOSTNAME#:#PORT#,...</value>
+    <value>ranger-zk:2181</value>
     <description>
       The Zookeeper connection string, a list of hostnames and port comma
       separated.
@@ -155,7 +159,8 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.keytab</name>
-    <value>/etc/hadoop/conf/kms.keytab</value>
+<!--    <value>/etc/hadoop/conf/kms.keytab</value>-->
+    <value>/etc/security/keytabs/kms.keytab</value>
     <description>
       The absolute path for the Kerberos keytab with the credentials to
       connect to Zookeeper.
@@ -164,7 +169,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.principal</name>
-    <value>kms/#HOSTNAME#</value>
+    <value>kms/ranger@EXAMPLE.COM</value>
     <description>
       The Kerberos service principal used to connect to Zookeeper.
     </description>
