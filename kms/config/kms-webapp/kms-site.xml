@@ -91,7 +91,7 @@
   <property>
     <name>hadoop.kms.authentication.kerberos.keytab</name>
 <!--    <value>${user.home}/kms.keytab</value>-->
-    <value>/etc/security/keytabs/HTTP.ranger.keytab</value>
+    <value>/etc/security/keytabs/HTTP.ranger-kms.keytab</value>
     <description>
       Path to the keytab with credentials for the configured Kerberos principal.
     </description>
@@ -99,7 +99,7 @@
 
   <property>
     <name>hadoop.kms.authentication.kerberos.principal</name>
-    <value>HTTP/ranger@EXAMPLE.COM</value>
+    <value>HTTP/ranger-kms@EXAMPLE.COM</value>
     <description>
       The Kerberos principal to use for the HTTP endpoint.
       The principal must start with 'HTTP/' as per the Kerberos HTTP SPNEGO specification.
@@ -133,7 +133,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.path</name>
-    <value>/hadoop-kms/hadoop-auth-signature-secret</value>
+    <value>/etc/security/hadoop-auth-signature-secret</value>
     <description>
       The Zookeeper ZNode path where the KMS instances will store and retrieve
       the secret from.
@@ -160,7 +160,7 @@
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.keytab</name>
 <!--    <value>/etc/hadoop/conf/kms.keytab</value>-->
-    <value>/etc/security/keytabs/kms.keytab</value>
+    <value>/etc/security/keytabs/kms.ranger-kms.keytab</value>
     <description>
       The absolute path for the Kerberos keytab with the credentials to
       connect to Zookeeper.
@@ -169,7 +169,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.principal</name>
-    <value>kms/ranger@EXAMPLE.COM</value>
+    <value>kms/ranger-kms@EXAMPLE.COM</value>
     <description>
       The Kerberos service principal used to connect to Zookeeper.
     </description>
@@ -193,5 +193,35 @@
   <property>
   	<name>hadoop.kms.proxyuser.ranger.users</name>
   	<value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.hadoop.users</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.hadoop.groups</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.hadoop.hosts</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.HTTP.users</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.HTTP.groups</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.HTTP.hosts</name>
+    <value>*</value>
   </property>
 </configuration>
