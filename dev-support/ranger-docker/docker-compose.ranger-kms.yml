@@ -22,8 +22,17 @@ services:
     environment:
       - RANGER_VERSION
       - RANGER_DB_TYPE
-    command:
-      - /home/ranger/scripts/ranger-kms.sh
+    volumes:
+      - ./kerberos-files/krb5.conf:/etc/krb5.conf:rw
+      - ./kerberos-files/keytabs:/etc/security/keytabs:rw
+#    Run the container as root to allow the ownership change.
+    user: root
+    entrypoint: >
+      sh -c "
+      chown -R root:root /etc/security/keytabs &&
+      /home/ranger/scripts/ranger-kms.sh"
+#    command:
+#      - /home/ranger/scripts/ranger-kms.sh
 
 networks:
   ranger:

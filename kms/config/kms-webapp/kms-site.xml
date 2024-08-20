@@ -81,7 +81,7 @@
 
   <property>
     <name>hadoop.kms.authentication.type</name>
-    <value>simple</value>
+    <value>kerberos</value>
     <description>
       Authentication type for the KMS. Can be either &quot;simple&quot;
       or &quot;kerberos&quot;.
@@ -91,7 +91,7 @@
   <property>
     <name>hadoop.kms.authentication.kerberos.keytab</name>
 <!--    <value>${user.home}/kms.keytab</value>-->
-    <value>/etc/security/keytabs/kms.keytab</value>
+    <value>/etc/security/keytabs/HTTP.ranger.keytab</value>
     <description>
       Path to the keytab with credentials for the configured Kerberos principal.
     </description>
