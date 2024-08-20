@@ -16,6 +16,7 @@ services:
       - ranger
     ports:
       - "9292:9292"
+      - "1111:1111"
     depends_on:
       ranger:
         condition: service_started
