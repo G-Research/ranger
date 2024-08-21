@@ -49,7 +49,7 @@ for custom_env_script in `find ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf
                 . $custom_env_script
         fi
 done
-JAVA_OPTS=" ${JAVA_OPTS} -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=1111"
+JAVA_OPTS=" ${JAVA_OPTS} -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1111"
 JAVA_OPTS=" ${JAVA_OPTS}  -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size} -Xms1g "
 
 if [ "$JAVA_HOME" != "" ]; then
@@ -113,10 +113,11 @@ fi
 KMS_CONF_DIR=${RANGER_KMS_EWS_DIR}/webapp/WEB-INF/classes/conf
 SERVER_NAME=rangerkms
 cp="-cp ${RANGER_KMS_EWS_CONF_DIR}:${RANGER_KMS_EWS_DIR}/lib/*:${JAVA_HOME}/lib/*:${RANGER_HADOOP_CONF_DIR}/*:$CLASSPATH"
-JAVA_OPTS="${JAVA_OPTS} ${DB_SSL_PARAM} -Dmetric.type=${arg3} -Duser=${USER} -Dhostname=${HOSTNAME} -Dservername=${SERVER_NAME} -Dcatalina.base=${RANGER_KMS_EWS_DIR} -Dkms.config.dir=${KMS_CONF_DIR} -Dlogback.configurationFile=file:${KMS_LOG_PROPERTIES_FILE} -Dkms.log.dir=${TOMCAT_LOG_DIR} $cp"
+JAVA_OPTS="${JAVA_OPTS} ${DB_SSL_PARAM} -Dmetric.type=${arg3} -Duser=${USER} -Dhostname=${HOSTNAME} -Dservername=${SERVER_NAME} -Dcatalina.base=${RANGER_KMS_EWS_DIR} -Dkms.config.dir=${KMS_CONF_DIR} -Dlogback.configurationFile=file:${KMS_LOG_PROPERTIES_FILE} -Dkms.log.dir=${TOMCAT_LOG_DIR} -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug=true $cp"
 createRangerKMSPid () {
 	SLEEP_TIME_AFTER_START=5
-	nohup java -D${PROC_NAME} ${JAVA_OPTS} ${START_CLASS_NAME} ${KMS_CONFIG_FILENAME} > ${TOMCAT_LOG_FILE} 2>&1 &
+#	nohup java -D${PROC_NAME} ${JAVA_OPTS} ${START_CLASS_NAME} ${KMS_CONFIG_FILENAME} > ${TOMCAT_LOG_FILE} 2>&1 &
+	nohup java -D${PROC_NAME} ${JAVA_OPTS} ${START_CLASS_NAME} ${KMS_CONFIG_FILENAME} 2>&1 | tee -a ${TOMCAT_LOG_FILE} /tmp/x.txt &
 	VALUE_OF_PID=$!
 	echo "Starting Apache Ranger KMS Service"
 	sleep $SLEEP_TIME_AFTER_START

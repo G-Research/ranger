@@ -8,6 +8,7 @@ services:
         - RANGER_VERSION=${RANGER_VERSION}
         - RANGER_DB_TYPE=${RANGER_DB_TYPE}
     image: ranger-kms:latest
+#    image: ranger-kms:x
     container_name: ranger-kms
     hostname: ranger-kms.example.com
     stdin_open: true

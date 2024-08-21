@@ -151,7 +151,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.auth.type</name>
-    <value>kerberos</value>
+    <value>sasl</value>
     <description>
       The Zookeeper authentication type, 'none' or 'sasl' (Kerberos).
     </description>
@@ -160,7 +160,7 @@
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.keytab</name>
 <!--    <value>/etc/hadoop/conf/kms.keytab</value>-->
-    <value>/etc/security/keytabs/kms.ranger-kms.keytab</value>
+    <value>/etc/security/keytabs/zookeeper.ranger-zk.keytab</value>
     <description>
       The absolute path for the Kerberos keytab with the credentials to
       connect to Zookeeper.
@@ -169,7 +169,7 @@
 
   <property>
     <name>hadoop.kms.authentication.signer.secret.provider.zookeeper.kerberos.principal</name>
-    <value>kms/ranger-kms@EXAMPLE.COM</value>
+    <value>zookeeper/ranger-zk@EXAMPLE.COM</value>
     <description>
       The Kerberos service principal used to connect to Zookeeper.
     </description>
@@ -196,21 +196,6 @@
   </property>
 
   <property>
-    <name>hadoop.kms.proxyuser.hadoop.users</name>
-    <value>*</value>
-  </property>
-
-  <property>
-    <name>hadoop.kms.proxyuser.hadoop.groups</name>
-    <value>*</value>
-  </property>
-
-  <property>
-    <name>hadoop.kms.proxyuser.hadoop.hosts</name>
-    <value>*</value>
-  </property>
-
-  <property>
     <name>hadoop.kms.proxyuser.HTTP.users</name>
     <value>*</value>
   </property>
@@ -222,6 +207,21 @@
 
   <property>
     <name>hadoop.kms.proxyuser.HTTP.hosts</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.zookeeper.users</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.zookeeper.groups</name>
+    <value>*</value>
+  </property>
+
+  <property>
+    <name>hadoop.kms.proxyuser.zookeeper.hosts</name>
     <value>*</value>
   </property>
 </configuration>

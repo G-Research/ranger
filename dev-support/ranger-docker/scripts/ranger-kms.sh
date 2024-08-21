@@ -35,6 +35,8 @@ then
   fi
 fi
 
+echo "$(getent hosts ranger-zk | awk '{ print $1 }')	      ranger-zk ranger-zk.rangernw" | tee -a /etc/hosts
+
 # delete PID file if exists
 rm -f /var/run/ranger_kms/rangerkms.pid
 
