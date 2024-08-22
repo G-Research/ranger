@@ -42,17 +42,17 @@ services:
 #      - /home/ranger/scripts/ranger.sh
 
   ranger-zk:
-    build:
-      context: .
-      dockerfile: Dockerfile.ranger-zk
-    image: ranger-zk
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.ranger-zk
+#    image: ranger-zk
 #
 #    It used version 3.5.9.
-#    image: 'zookeeper:3.6.3'
+    image: 'zookeeper:3.6.3'
     container_name: ranger-zk
     hostname: ranger-zk
     environment:
-      JVMFLAGS: "-Djava.security.auth.login.config=/conf/jaas.conf -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug=true"
+      JVMFLAGS: "-Djute.maxbuffer=50000000 -Djava.security.auth.login.config=/conf/jaas.conf -Dsun.security.krb5.debug=true -Dsun.security.spnego.debug=true"
     volumes:
       - ./kerberos-files/krb5.conf:/etc/krb5.conf:rw
       - ./kerberos-files/keytabs:/etc/security/keytabs:rw
