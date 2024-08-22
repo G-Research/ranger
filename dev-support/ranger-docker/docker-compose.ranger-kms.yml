@@ -27,7 +27,8 @@ services:
     volumes:
       - ./kerberos-files/krb5.conf:/etc/krb5.conf:rw
       - ./kerberos-files/keytabs:/etc/security/keytabs:rw
-#    Run the container as root to allow the ownership change.
+      - ./kerberos-files/kms-jaas.conf:/etc/kms-jaas.conf:rw
+    #    Run the container as root to allow the ownership change.
     user: root
     entrypoint: >
       sh -c "

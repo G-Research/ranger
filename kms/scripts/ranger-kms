@@ -50,6 +50,7 @@ for custom_env_script in `find ${RANGER_KMS_DIR}/ews/webapp/WEB-INF/classes/conf
         fi
 done
 JAVA_OPTS=" ${JAVA_OPTS} -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=1111"
+JAVA_OPTS=" ${JAVA_OPTS} -Djava.security.auth.login.config=/etc/kms-jaas.conf"
 JAVA_OPTS=" ${JAVA_OPTS}  -XX:MetaspaceSize=100m -XX:MaxMetaspaceSize=256m -Xmx${ranger_kms_max_heap_size} -Xms1g "
 
 if [ "$JAVA_HOME" != "" ]; then
