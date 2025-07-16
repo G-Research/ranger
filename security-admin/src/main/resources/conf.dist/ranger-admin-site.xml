@@ -104,7 +104,7 @@
 	</property>
 	<property>
 		<name>ranger.authentication.method</name>
-		<value>UNIX</value>
+		<value>KERBEROS</value>
 		<description></description>
 	</property>
 	<property>
